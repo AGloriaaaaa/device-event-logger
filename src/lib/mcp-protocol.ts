@@ -232,6 +232,7 @@ async function handleMcpRequest(message: JsonRpcMessage, sql: postgres.Sql, offs
 export async function handleMcpPost(c: Context<{ Bindings: Env; Variables: Vars }>): Promise<Response> {
   const sql = c.var.sql;
   const offsetMinutes = c.var.offsetMinutes;
+  c.header("X-Accel-Buffering", "no");
 
   // Validate protocol version header
   const version = c.req.header("mcp-protocol-version")?.trim();
