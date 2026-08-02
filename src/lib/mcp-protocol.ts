@@ -233,6 +233,10 @@ export async function handleMcpPost(c: Context<{ Bindings: Env; Variables: Vars 
   const sql = c.var.sql;
   const offsetMinutes = c.var.offsetMinutes;
   c.header("X-Accel-Buffering", "no");
+  c.header("Content-Type", "text/event-stream");
+c.header("Cache-Control", "no-cache");
+c.header("Connection", "keep-alive");
+c.header("X-Accel-Expires", "0");
 
   // Validate protocol version header
   const version = c.req.header("mcp-protocol-version")?.trim();
